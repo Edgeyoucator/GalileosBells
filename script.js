@@ -165,7 +165,7 @@ function checkAccuracy() {
   }
 
   const success = expectedTimes.every((expected, i) => {
-    return Math.abs(actualTimes[i] - expected) < 0.05;
+    return Math.abs(actualTimes[i] - expected) < 0.1;
   });
 
   if (success) {
