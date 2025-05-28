@@ -22,8 +22,8 @@ let firstLoad = true;
 
 function setupBells() {
   if (firstLoad) {
+    const spacing = 30;
     bells = bellTimes.map((t, i) => {
-      const spacing = 30;
       const distance = spacing * i;
       return { x: 50 + distance, y: 200, hit: false, time: null, radius: 12 };
     });
@@ -44,11 +44,11 @@ function drawRamp() {
   ctx.moveTo(50, 200);
   ctx.lineTo(endX, endY);
   ctx.stroke();
+
   ctx.fillStyle = "#86dabd";
   ctx.font = "16px monospace";
   ctx.textAlign = "center";
   ctx.fillText("Your goal is to position the bells so they ring at 1-second intervals.", canvas.width / 2, canvas.height - 40);
-
 }
 
 function drawDistanceScale() {
@@ -152,12 +152,27 @@ function animate(timestamp) {
 }
 
 function checkAccuracy() {
-  const success = bells.every((bell, i) => {
-    const target = (i + 1);
-    return bell.time && Math.abs(bell.time - target) < 0.05;
+  const actualTimes = bells
+    .filter(b => b.hit && b.time !== null)
+    .map(b => b.time)
+    .sort((a, b) => a - b);
+
+  const expectedTimes = [1, 2, 3, 4, 5, 6, 7];
+
+  if (actualTimes.length !== expectedTimes.length) {
+    alert("❌ Try again. Not all bells were triggered.");
+    return;
+  }
+
+  const success = expectedTimes.every((expected, i) => {
+    return Math.abs(actualTimes[i] - expected) < 0.05;
   });
-  if (success) alert("✅ Success! Each bell rang at 1s intervals.");
-  else alert("❌ Try again. Adjust the bells.");
+
+  if (success) {
+    alert("✅ Success! Each bell rang at 1s intervals.");
+  } else {
+    alert("❌ Try again. Adjust the bells.");
+  }
 }
 
 testBtn.addEventListener("click", () => {
@@ -173,7 +188,9 @@ canvas.addEventListener("mousedown", e => {
   const rect = canvas.getBoundingClientRect();
   const mouseX = e.clientX - rect.left;
   const mouseY = e.clientY - rect.top;
-  draggingBell = bells.find(bell => Math.hypot(mouseX - bell.x, mouseY - bell.y+12) < 28);
+  draggingBell = bells.find(bell =>
+    Math.hypot(mouseX - bell.x, mouseY - bell.y+12) < 28
+  );
   if (draggingBell) canvas.classList.add("grabbing");
 });
 
@@ -213,4 +230,3 @@ window.onload = () => {
     startScreen.style.display = "none";
   });
 };
-
