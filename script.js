@@ -173,7 +173,7 @@ canvas.addEventListener("mousedown", e => {
   const rect = canvas.getBoundingClientRect();
   const mouseX = e.clientX - rect.left;
   const mouseY = e.clientY - rect.top;
-  draggingBell = bells.find(bell => Math.hypot(mouseX - bell.x, mouseY - bell.y) < 20);
+  draggingBell = bells.find(bell => Math.hypot(mouseX - bell.x, mouseY - bell.y+12) < 28);
   if (draggingBell) canvas.classList.add("grabbing");
 });
 
