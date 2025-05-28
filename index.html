@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Galileo Ramp Experiment</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="timer-display">0.00s</div>
+  <div id="start-screen">
+  <div class="instructions">
+    <h2>🎯 Challenge: Galileo’s Bells</h2>
+    <p><strong>Can you arrange the bells so that each one rings exactly 1 second after the previous one?</strong></p>
+
+    <h3>🛠 How it works:</h3>
+    <ul>
+      <li>A ball rolls down a ramp with constant acceleration.</li>
+      <li>Each bell rings when the ball reaches it.</li>
+      <li>Your goal is to <strong>position the bells</strong> so they ring at <strong>1-second intervals</strong> (1.00s, 2.00s, 3.00s...).</li>
+    </ul>
+
+    <h3>🧪 What you can do:</h3>
+    <ul>
+      <li><strong>Drag</strong> the bells left or right. They’ll snap to marked positions.</li>
+      <li>Press <strong>Test</strong> to release the ball and hear when the bells ring.</li>
+      <li>If all bells ring at the right times (within ±0.05s), you’ll see a <strong>Success</strong> message.</li>
+      <li>Use <strong>Reset</strong> to try again (bell positions will stay the same).</li>
+    </ul>
+
+    <button id="begin-button">Start</button>
+  </div>
+</div>
+
+  <canvas id="ramp-canvas" width="1400" height="600"></canvas>
+  <div style="text-align:center">
+    <button id="start-button">Start</button>
+    <button id="reset-button">Reset</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

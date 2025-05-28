@@ -1,0 +1,91 @@
+/* style.css */
+body {
+  margin: 0;
+  background-color: #162237;
+  font-family: monospace;
+  color: #86dabd;
+}
+
+canvas {
+  display: block;
+  margin: 20px auto;
+  border: 2px solid #86dabd;
+  padding: 0;
+  background-color: #162237;
+  
+}
+
+button {
+  margin: 10px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #f15f24;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+
+#timer-display {
+  text-align: center;
+  font-size: 24px;
+  color: #86dabd;
+  margin-top: 10px;
+}
+
+canvas:hover {
+  cursor: grab;
+}
+
+canvas.grabbing {
+  cursor: grabbing;
+}
+
+#start-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+  background-color: rgba(22, 34, 55, 0.9);
+  color: #86dabd;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.instructions {
+  background-color: #162237;
+  border: 2px solid #86dabd;
+  padding: 30px;
+  max-width: 600px;
+  text-align: left;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.instructions h2, .instructions h3 {
+  color: #f15f24;
+}
+
+.instructions ul {
+  padding-left: 20px;
+}
+
+#begin-button {
+  margin-top: 20px;
+  font-size: 16px;
+  padding: 10px 20px;
+  background-color: #f15f24;
+  border: none;
+  color: white;
+  cursor: pointer;
+  border-radius: 4px;
+}
