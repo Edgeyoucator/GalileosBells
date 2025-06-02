@@ -48,7 +48,7 @@ function drawRamp() {
   ctx.fillStyle = "#86dabd";
   ctx.font = "16px monospace";
   ctx.textAlign = "center";
-  ctx.fillText("Your goal is to position the bells so they ring at 1-second intervals.", canvas.width / 2, canvas.height - 40);
+  ctx.fillText("Your goal is to position the bells so they ring at 1-second intervals. Put the first bell at 1.00s!!!", canvas.width / 2, canvas.height - 40);
 }
 
 function drawDistanceScale() {
