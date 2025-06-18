@@ -184,24 +184,34 @@ testBtn.addEventListener("click", () => {
 
 resetBtn.addEventListener("click", reset);
 
-canvas.addEventListener("mousedown", e => {
+function getEventPosition(e) {
   const rect = canvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
-  const mouseY = e.clientY - rect.top;
+  const clientX = e.clientX !== undefined ? e.clientX : e.touches[0].clientX;
+  const clientY = e.clientY !== undefined ? e.clientY : e.touches[0].clientY;
+  return {
+    x: clientX - rect.left,
+    y: clientY - rect.top
+  };
+}
+
+canvas.addEventListener("pointerdown", e => {
+  const { x, y } = getEventPosition(e);
   draggingBell = bells.find(bell =>
-    Math.hypot(mouseX - bell.x, mouseY - bell.y+12) < 28
+    Math.hypot(x - bell.x, y - bell.y + 12) < 28
   );
-  if (draggingBell) canvas.classList.add("grabbing");
+  if (draggingBell) {
+    canvas.setPointerCapture(e.pointerId);
+    canvas.classList.add("grabbing");
+  }
 });
 
-canvas.addEventListener("mousemove", e => {
+canvas.addEventListener("pointermove", e => {
   if (!draggingBell) return;
-  const rect = canvas.getBoundingClientRect();
-  const mouseX = e.clientX - rect.left;
+  const { x } = getEventPosition(e);
   const scaleUnit = 0.5 * a;
   const minX = 50;
   const maxX = 50 + 50 * (0.5 * a);
-  const snappedX = Math.round((mouseX - minX) / scaleUnit) * scaleUnit + minX;
+  const snappedX = Math.round((x - minX) / scaleUnit) * scaleUnit + minX;
   draggingBell.x = Math.max(minX, Math.min(maxX, snappedX));
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawRamp();
@@ -210,8 +220,9 @@ canvas.addEventListener("mousemove", e => {
   drawBells();
 });
 
-canvas.addEventListener("mouseup", () => {
+canvas.addEventListener("pointerup", e => {
   draggingBell = null;
+  canvas.releasePointerCapture(e.pointerId);
   canvas.classList.remove("grabbing");
 });
 
