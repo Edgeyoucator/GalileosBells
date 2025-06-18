@@ -12,7 +12,8 @@ canvas {
   border: 2px solid #86dabd;
   padding: 0;
   background-color: #162237;
-  
+  touch-action: none;
+
 }
 
 button {
