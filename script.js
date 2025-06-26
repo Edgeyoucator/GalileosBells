@@ -188,9 +188,11 @@ function getEventPosition(e) {
   const rect = canvas.getBoundingClientRect();
   const clientX = e.clientX !== undefined ? e.clientX : e.touches[0].clientX;
   const clientY = e.clientY !== undefined ? e.clientY : e.touches[0].clientY;
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
   return {
-    x: clientX - rect.left,
-    y: clientY - rect.top
+    x: (clientX - rect.left) * scaleX,
+    y: (clientY - rect.top) * scaleY
   };
 }
 
