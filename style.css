@@ -1,4 +1,4 @@
-/* style.css */
+/* General layout */
 body {
   margin: 0;
   background-color: #162237;
@@ -6,20 +6,35 @@ body {
   color: #86dabd;
 }
 
+/* Container for both top bar and canvas */
+.canvas-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Canvas styling */
 canvas {
   display: block;
   margin: 20px auto;
   border: 2px solid #86dabd;
-  padding: 0;
   background-color: #162237;
   touch-action: none;
-  width: 80%;      /* responsive width */
-  height: auto;     /* preserve aspect ratio */
-  max-width: 100vw; /* limit to viewport width */
+  width: 100%;
+  height: auto;
+  max-width: 100%;
 }
 
+canvas:hover {
+  cursor: grab;
+}
+
+canvas.grabbing {
+  cursor: grabbing;
+}
+
+/* Buttons */
 button {
-  margin: 10px;
   padding: 8px 12px;
   font-size: 14px;
   background-color: #f15f24;
@@ -34,21 +49,34 @@ button:disabled {
   cursor: not-allowed;
 }
 
+/* Top bar: buttons left, timer centered */
+#top-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+#button-group {
+  display: flex;
+  gap: 10px;
+  z-index: 1;
+}
+
+.center-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 #timer-display {
-  text-align: center;
   font-size: 24px;
   color: #86dabd;
-  margin-top: 10px;
+  text-align: center;
 }
 
-canvas:hover {
-  cursor: grab;
-}
-
-canvas.grabbing {
-  cursor: grabbing;
-}
-
+/* Start screen overlay */
 #start-screen {
   position: absolute;
   top: 0;
@@ -64,6 +92,7 @@ canvas.grabbing {
   align-items: center;
 }
 
+/* Instructions panel */
 .instructions {
   background-color: #162237;
   border: 2px solid #86dabd;
@@ -74,7 +103,8 @@ canvas.grabbing {
   border-radius: 10px;
 }
 
-.instructions h2, .instructions h3 {
+.instructions h2,
+.instructions h3 {
   color: #f15f24;
 }
 
