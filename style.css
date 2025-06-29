@@ -13,7 +13,7 @@ canvas {
   padding: 0;
   background-color: #162237;
   touch-action: none;
-  width: 100%;      /* responsive width */
+  width: 80%;      /* responsive width */
   height: auto;     /* preserve aspect ratio */
   max-width: 100vw; /* limit to viewport width */
 }
